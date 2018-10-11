@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
+    <h2 class="alert alert-success">{{info}}</h2>
     <br />
     <div class="row">
       <div class="col-3">
@@ -24,3 +25,22 @@
     </div>
   </div>
 </template>
+
+<script>
+  const axios = require('axios');
+
+  export default {
+    data () {
+      return {
+        info: 0,
+      }
+    },
+
+    mounted() {
+      console.log('hu');
+      axios
+        .get('http://localhost:9090/counter')
+        .then(response => (this.info = response.data.count))
+    }
+  }
+</script>
