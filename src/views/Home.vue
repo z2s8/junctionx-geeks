@@ -1,8 +1,11 @@
 <template>
   <!-- Include the above in your HEAD tag -->
   <div class="d-flex justify-content-center formok">
+
     <form class="form">
-      <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+<div class="form-group">
         <label for="formGroupExampleInput">You send</label>
         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="amount">
       </div>
@@ -14,24 +17,25 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item d-flex align-items-center" href="#">
             <img class="kep" src="../assets/eur.png" alt="euro">
             <span class="valuta">EUR</span><span class="valuta_name">Euro</span>
           </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item d-flex align-items-center" href="#">
             <img class="kep" src="../assets/gbr.png" alt="font">
             <span class="valuta">GBR</span><span class="valuta_name">British pound</span>
           </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item d-flex align-items-center" href="#">
             <img class="kep" src="../assets/usd.png" alt="dollar">
             <span class="valuta">USD</span><span class="valuta_name">United States dollar</span>
           </a>
         </div>
-      </div>
-    </form>
 
-    <form>
-      <div class="form-group">
+      </div>
+        </div>
+
+      <div class="col-md-6">
+  <div class="form-group">
         <label for="formGroupExampleInput">Recipient gets</label>
         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="amount">
       </div>
@@ -43,25 +47,26 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item d-flex align-items-center" href="#">
             <img class="kep" src="../assets/eur.png" alt="euro">
             <span class="valuta">EUR</span><span class="valuta_name">Euro</span>
           </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item d-flex align-items-center" href="#">
             <img class="kep" src="../assets/gbr.png" alt="font">
             <span class="valuta">GBR</span><span class="valuta_name">British pound</span>
           </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item d-flex align-items-center" href="#">
             <img class="kep" src="../assets/usd.png" alt="dollar">
             <span class="valuta">USD</span><span class="valuta_name">United States dollar</span>
           </a>
         </div>
       </div>
-    </form>
-
-    <form class="elkuldgomb">
-      <div>
-        <a class="ok btn" href="submit">
+      </div>
+    
+      </div>
+       <div class="row">
+ <div class="col-12" style="position: relative;">
+        <a class="ok btn" style="position: absolute; top: 50px;" href="submit">
           <span data-text="S">S</span>
           <span data-text="U">U</span>
           <span data-text="B">B</span>
@@ -70,7 +75,12 @@
           <span data-text="T">T</span>
         </a>
       </div>
+    </div>
+      
     </form>
+   
+     
+    
 
   </div>
   
