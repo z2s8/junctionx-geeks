@@ -1,5 +1,5 @@
 <template>
-   <div class="container">
+   <div>
       <div class="row">
          <div class="col-md-6 col-sm-12 cell-home" id="left-1">
             <div></div>
@@ -53,8 +53,17 @@
          </div>
       </div>
       <div class="row">
-         <div class="col-md-6 col-sm-12 cell-home" id="left-2">
+         <div class="col-md-6 col-sm-12 cell-home d-flex  justify-content-center align-items-center" id="left-2">
             <div>
+                
+    <p id = "titleChart">Amount of delivered money</p>
+    <div class="canvas-container">
+      <canvas id="Mychart"></canvas>
+    </div>
+    
+  
+
+
             </div>
          </div>
          <div class="col-md-6 col-sm-12 cell-home border" id="right-2">
@@ -127,6 +136,16 @@
    </div>
 </template>
 <style scoped>
+
+.canvas-container {
+
+  
+ 
+  position: relative;
+  width: 800px;
+  height: 100%;
+
+}
 .cell-home {
   height: 100vh;
 }
@@ -262,6 +281,12 @@
 .city2-leave-to {
   opacity: 0;
 }
+
+#titleChart {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
 </style>
 
 
@@ -269,6 +294,9 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 // import Waypoint from "waypoints/lib/noframework.waypoints.min.js"
+import Chart from "chart.js";
+import axios from "axios";
+
 
 export default {
   name: "home",
@@ -277,6 +305,64 @@ export default {
   },
   data() {
     return {
+
+      ListOfTran: [
+        {
+          id: 1,
+          currencyFrom: "HUF",
+          currencyTo: "EUR",
+          exchangeRate: 350,
+          feePercent: 0.35,
+          beginAmount: 10000,
+          saveUpTo: 22,
+          guaranteedRateHours: 96,
+          concurrencies: [
+            {
+              name: "Eastern Union",
+              exchangeRate: 320,
+              feePercent: 0,
+              beginAmount: 10000,
+              days: 3
+            },
+            {
+              name: "CBHS",
+              exchangeRate: 350,
+              beginAmount: 10000,
+              feePercent: 0.40,
+              days: 4
+            }
+          ],
+
+          days: Math.random() * 4 + 1
+        },
+
+        {
+          id: 2,
+          currencyFrom: "EUR",
+          currencyTo: "HUF",
+          exchangeRate: Math.random() * 325 + 300,
+          fee: Math.random() * 6 + 1,
+          saveUpTo: 22,
+          guaranteedRateHours: 96,
+          concurrencies: [
+            {
+              name: "Eastern Union",
+              exchangeRate: 220,
+              fee: 333,
+              days: 3
+            },
+            {
+              name: "CBHS",
+              exchangeRate: 210,
+              fee: 223,
+              days: 4
+            }
+          ],
+
+          days: Math.random() * 4 + 1
+        }
+      ],    
+
       selectedFrom: {
         name: "Euro",
         currency: "EUR",
@@ -311,6 +397,123 @@ export default {
     };
   },
   methods: {
+      addValues() {
+      this.ListOfTran.forEach(element => {
+        if (element.currencyFrom == "HUF" && element.currencyTo == "EUR") {
+          var valuee = element.exchangeRate;
+        }
+      });
+    },
+
+    updateCharts() {
+      let transData = this.ListOfTran[0]
+      let transferwiseDeliered = this.calcDelivered(transData.exchangeRate, transData.feePercent, transData.beginAmount);
+      this.myChart.data.labels[0] = 'TransferWise';
+      this.myChart.data.datasets[0].data[0] = transferwiseDeliered;
+      
+      for (var i = 0; i < transData.concurrencies.length; i++) {
+        let currentData = transData.concurrencies[i];
+        let currentDelivered = this.calcDelivered(currentData.exchangeRate, currentData.feePercent, currentData.beginAmount);
+        console.log(currentData.name, currentDelivered);
+        this.myChart.data.labels[i + 1] = currentData.name;
+        this.myChart.data.datasets[0].data[i + 1] = currentDelivered;
+      }
+
+      this.myChart.update();
+
+    },
+
+    calcDelivered(exchangeRate, feePercent, beginAmount) {
+      let fee = beginAmount * feePercent;
+      let delivered = (beginAmount - fee) * exchangeRate;
+      return delivered;
+    },
+
+    loadChart() {
+      var d = new Date();
+      var n = d.getHours();
+      let ctx = document.getElementById("Mychart");
+      this.myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["Eastern Union", "CBHS"],
+          datasets: [
+            {
+              label: "",
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                '#00B9FF',
+                '#1B2C4B',
+                '#1B2C4B',
+                '#1B2C4B',
+                '#1B2C4B',
+                '#1B2C4B'
+              ],
+              borderColor: [
+                '#00B9FF',
+                '#1B2C4B',
+                '#1B2C4B',
+                '#1B2C4B',
+                '#1B2C4B',
+                '#1B2C4B'
+              ],
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          legend: {
+    	display: false,
+    },
+  	tooltips: {
+    	callbacks: {
+      	label: function(tooltipItem) {
+        console.log(tooltipItem)
+        	return tooltipItem.yLabel;
+        }
+      }
+    },
+          scales: {
+            
+            yAxes: [
+              {
+                gridLines: {
+                  drawOnChartArea: false
+                },
+                ticks: {
+                  beginAtZero: true,
+                  fontColor: "#1B2C4B",
+                  fontFamily: "'Montserrat', 'sans-serif'",
+                  fontStyle: "bold",
+                  fontSize: 18,
+                  maxTicksLimit: 6,
+                }
+              }
+            ],
+
+            xAxes: [
+              {
+                barPercentage: 9,
+    categoryPercentage: 0.1,
+                   gridLines: {
+                  drawOnChartArea: false,
+                   
+                   },
+
+                   ticks: {
+                    fontColor: "#1B2C4B",
+                    fontFamily: "'Montserrat', 'sans-serif'",
+                    categorySpacing: 0,
+                    fontStyle: "bold",
+                    fontSize: 18
+                   }
+              }
+            ]
+          }
+        }
+      });
+    },
+
     selectFromCurrency: function(option) {
       if (this.selectedTo.currency == option.currency) {
         this.selectedTo = this.selectedFrom;
@@ -334,7 +537,15 @@ export default {
         document.getElementById("gif").src = require("@/assets/utvonal.gif");
     },
 
-  }
+  },
+
+  
+  mounted() {
+    this.loadChart();
+    this.updateCharts();
+  },
+  
+
   
 }
 </script>
