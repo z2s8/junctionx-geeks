@@ -55,9 +55,6 @@
       <div class="row">
          <div class="col-md-6 col-sm-12 cell-home" id="left-2">
             <div>
-              <button v-on:click="startGif()">Show/Hide</button>
-              <button v-on:click="showc1 = !showc1">Show city1</button>
-              <button v-on:click="showc2 = !showc2">Show city2</button>
             </div>
          </div>
          <div class="col-md-6 col-sm-12 cell-home border" id="right-2">
@@ -104,18 +101,18 @@
                               </div>
                      </transition>
                      <transition name="fade">
-                        <div v-if="show" style="position: relative;" >
-                          <img id="gif" style="max-width: 100%; max-height: 100%;">
+                        <div style="position: relative;" >
+                          <img id="gif" src="../assets/utvonal.gif" style="max-width: 100%; max-height: 100%;">
 
                           <transition name="city1">
-                            <div v-if="showc1">
+                            <div>
                               <p style="position: absolute; top :17%; left: 26%;">City</p>
                               <div style="position: absolute; top :24%; left: 28%; width: 20px; height: 20px; background: green;"></div>
                             </div>
                           </transition>
 
                           <transition name="city2">
-                            <div v-if="showc2">
+                            <div>
                               <p style="position: absolute; top :86%; left: 55%;">City</p>
                               <div style="position: absolute; top :81%; left: 56%; width: 20px; height: 20px; background: green;"></div>
                             </div>
@@ -251,17 +248,18 @@
   transition: opacity 1s;
 }
 
-.city1-enter, .city1-leave-to {
+.city1-enter,
+.city1-leave-to {
   opacity: 0;
 }
-
 
 .city2-enter-active,
 .city2-leave.active {
   transition: opacity 1s;
 }
 
-.city2-enter, .city2-leave-to {
+.city2-enter,
+.city2-leave-to {
   opacity: 0;
 }
 </style>
@@ -270,6 +268,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+// import Waypoint from "waypoints/lib/noframework.waypoints.min.js"
 
 export default {
   name: "home",
@@ -333,7 +332,9 @@ export default {
 
       if(this.show)
         document.getElementById("gif").src = require("@/assets/utvonal.gif");
-    }
-  },
-};
+    },
+
+  }
+  
+}
 </script>
