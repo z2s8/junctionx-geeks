@@ -11,7 +11,7 @@
                      <div class="col-md-6">
                         <div class="form-group">
                            <label for="formGroupExampleInput">You send</label>
-                           <input type="text" class="form-control" id="formGroupExampleInput" placeholder="amount">
+                           <input type="text" class="form-control" id="formGroupExampleInput" placeholder="amount" v-model="amountFrom">
                         </div>
                         <div class="dropdown">
                            <a class="btn dropdown-toggle format" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -29,7 +29,7 @@
                      <div class="col-md-6">
                         <div class="form-group">
                            <label for="formGroupExampleInput">Recipient gets</label>
-                           <input type="text" class="form-control" id="formGroupExampleInput" placeholder="amount">
+                           <input type="text" class="form-control" id="formGroupExampleInput" placeholder="amount" v-model="amountTo">
                         </div>
                         <div class="dropdown">
                            <a class="btn dropdown-toggle format" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -270,6 +270,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+import axios from 'axios';
 
 export default {
   name: "home",
@@ -278,6 +279,9 @@ export default {
   },
   data() {
     return {
+      estimate: {},
+      amountFrom: 100,
+      amountTo: 111.12,
       selectedFrom: {
         name: "Euro",
         currency: "EUR",
@@ -311,6 +315,22 @@ export default {
       showc2: true
     };
   },
+  mounted: function() {
+      this.getEstimate()
+    },
+    watch: {
+      selectedFrom: {handler: function(newOne, oldOne) {
+        // if(newOne.currencyTo)
+        this.getEstimate()
+      }, deep: true},
+      selectedTo: {handler: function(newOne, oldOne) {
+        // if(newOne.currencyTo)
+        this.getEstimate()
+      }, deep: true},
+      amountFrom: {handler: function(newOne, oldOne) {
+        this.calcEstimate()
+      }}
+    },
   methods: {
     selectFromCurrency: function(option) {
       if (this.selectedTo.currency == option.currency) {
@@ -326,6 +346,24 @@ export default {
       }
 
       this.selectedTo = option;
+    },
+
+    getEstimate: function() {
+      let that = this;
+      axios
+      .post('http://localhost:9090/estimate', {currencyFrom: this.selectedFrom.currency, currencyTo: this.selectedTo.currency})
+      .then(function(data) {
+        if (true) {
+          console.log('hey', data.data);
+          that.estimate = data.data;
+          that.calcEstimate();
+        }
+      })
+    },
+
+    calcEstimate: function() {
+      this.amountTo = (this.amountFrom - this.amountFrom * this.estimate.feePercent)* this.estimate.exchangeRate;
+      return this.amountTo;
     },
 
     startGif: function() {
