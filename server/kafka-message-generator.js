@@ -75,42 +75,98 @@ class KafkaMessageGenerator {
                 intervals: [
                     16, 4, 48
                 ]
+            },
+                        {
+                currencyFrom: "EUR",
+                currencyTo: "USD",
+                exchangeRate: 1.15100,
+                cities: [
+                    "Zurich", "Amsterdam", "London", "New York"
+                ],
+                intervals: [
+                    16, 4, 48
+                ]
             }
-        ];
+        ]
 
-        simpleTransfers.forEach(tf => {
-            setTimeout(() => {
-                var txDone = {}
-                txDone.currencyFrom = tf.currencyFrom;
-                txDone.currencyTo = tf.currencyTo;
-                txDone.exchangeRate = tf.exchangeRate;
-                txDone.feePercent = 0.03;
-                txDone.guaranteedRateHours = 96;
-                txDone.concurrencies = [
-                    {
-                        name: "Eastern Union",
-                        exchangeRate: tf.exchangeRate * Math.random() * (1.1 - 0.7) + 0.7,
-                        feePercent: 0.3,
-                        days: Math.floor(Math.random() * (5 - 2) + 2), // 2-4 days
-                    }
-                ];
-                txDone.days = Math.floor(Math.random() * (5 - 2) + 2); // 2-4 days
-                
-                KafkaMessageGenerator.publishGeneratedTransfer(txDone);
-                console.log(txDone);
-    
-            }, 15000);
+        for(var j = 0; j < simpleTransfers.length - 1; j++){
+            console.log('wtf we even doin')
             
-        });
+            setTimeout(function() {
+                console.log('we are about to emit one', j, simpleTransfers[j])
+                KafkaMessageGenerator.createTransfer(simpleTransfers[j]);
+            }, 2000 * (j+1))
 
-       
+        }
+
+
     }
 
-    static publishGeneratedTransfer(transfer) {
-        
+    static createTransfer(tf) {
+
+            
+            var txDone = {}
+            console.log('tf is wtf', tf)
+            txDone.currencyFrom = tf.currencyFrom;
+            txDone.currencyTo = tf.currencyTo;
+            txDone.exchangeRate = tf.exchangeRate;
+            txDone.feePercent = 0.03;
+            txDone.guaranteedRateHours = 96;
+            txDone.cities = tf.cities;
+            txDone.concurrencies = [
+                {
+                    name: "Eastern Union",
+                    exchangeRate: tf.exchangeRate * Math.random() * (1.1 - 0.8) + 0.8,
+                    feePercent: 0.3,
+                    days: Math.floor(Math.random() * (5 - 2) + 2), // 2-4 days
+                },
+                {
+                    name: "Growing Universe",
+                    exchangeRate: tf.exchangeRate * Math.random() * (1.1 - 0.6) + 0.6,
+                    feePercent: 0.3,
+                    days: Math.floor(Math.random() * (5 - 2) + 2), // 2-4 days
+                },
+                {
+                    name: "Kilo Money",
+                    exchangeRate: tf.exchangeRate * Math.random() * (1.0 - 0.8) + 0.8,
+                    feePercent: 0.3,
+                    days: Math.floor(Math.random() * (5 - 2) + 2), // 2-4 days
+                },
+                {
+                    name: "BSCH",
+                    exchangeRate: tf.exchangeRate * Math.random() * (1.0 - 0.6) + 0.6,
+                    feePercent: 0.3,
+                    days: Math.floor(Math.random() * (5 - 2) + 2), // 2-4 days
+                },
+                {
+                    name: "Yoddle Union",
+                    exchangeRate: tf.exchangeRate * Math.random() * (0.9 - 0.6) + 0.6,
+                    feePercent: 0.3,
+                    days: Math.floor(Math.random() * (5 - 2) + 2), // 2-4 days
+                }
+            ];
+            txDone.intervals = tf.intervals;
+
+            var sum = 0;
+            for (var i = 0; i < tf.intervals.length; i++) {
+                sum += tf.intervals[i];
+            }
+            txDone.days = Math.ceil(sum);
+
+            KafkaMessageGenerator.publishGeneratedTransfer(txDone, function(err, data){
+                console.log('we just published', data);
+            });
+
+       
+
+    }
+
+    static publishGeneratedTransfer(transfer, callback) {
+
         var kafkaService = new KafkaService();
         kafkaService.publish("nottest-2", [JSON.stringify(transfer)], (err, data) => {
             console.log(err, data);
+            callback(err, data);
         });
     }
 }

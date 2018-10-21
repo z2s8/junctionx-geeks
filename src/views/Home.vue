@@ -115,14 +115,14 @@
 
                           <transition name="city1">
                             <div>
-                              <p style="position: absolute; top :17%; left: 26%;">City</p>
+                              <p style="position: absolute; top :17%; left: 26%;" v-model="city1">City</p>
                               <div style="position: absolute; top :24%; left: 28%; width: 20px; height: 20px; background: green;"></div>
                             </div>
                           </transition>
 
                           <transition name="city2">
                             <div>
-                              <p style="position: absolute; top :86%; left: 55%;">City</p>
+                              <p style="position: absolute; top :86%; left: 55%;" v-model="city2">City</p>
                               <div style="position: absolute; top :81%; left: 56%; width: 20px; height: 20px; background: green;"></div>
                             </div>
                           </transition>
@@ -305,6 +305,8 @@ export default {
   },
   data() {
     return {
+      city1: 'Amsterdam',
+      city2: 'Brussels',
       estimate: {},
       amountFrom: 100,
       amountTo: 111.12,
@@ -411,6 +413,7 @@ export default {
       }, deep: true},
       amountFrom: {handler: function(newOne, oldOne) {
         this.calcEstimate()
+        this.updateCharts()
       }}
     },
   methods: {
@@ -422,7 +425,28 @@ export default {
       });
     },
 
-    updateCharts() {
+    updateCharts: function() {
+      let transData = this.estimate;
+      if (!transData || !transData.concurrencies || false) {
+        return;
+      }
+      let transferwiseDeliered = this.calcDelivered(transData.exchangeRate, transData.feePercent, this.amountFrom);
+      this.myChart.data.labels[0] = 'TransferWise';
+      this.myChart.data.datasets[0].data[0] = transferwiseDeliered;
+      
+      for (var i = 0; i < transData.concurrencies.length; i++) {
+        let currentData = transData.concurrencies[i];
+        let currentDelivered = this.calcDelivered(currentData.exchangeRate, currentData.feePercent, this.amountFrom);
+        console.log(currentData.name, currentDelivered);
+        this.myChart.data.labels[i + 1] = currentData.name;
+        this.myChart.data.datasets[0].data[i + 1] = currentDelivered;
+      }
+
+      this.myChart.update();
+
+    },
+
+    updateChartsOld() {
       let transData = this.ListOfTran[0]
       let transferwiseDeliered = this.calcDelivered(transData.exchangeRate, transData.feePercent, transData.beginAmount);
       this.myChart.data.labels[0] = 'TransferWise';
@@ -556,6 +580,7 @@ export default {
           console.log('hey', data.data);
           that.estimate = data.data;
           that.calcEstimate();
+          that.updateCharts();
         }
       })
     },
@@ -577,6 +602,7 @@ export default {
   
   mounted() {
     this.loadChart();
+    this.getEstimate();
     this.updateCharts();
   },
   
