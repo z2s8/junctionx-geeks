@@ -68,8 +68,92 @@
   <div class="col-md-6 col-sm-12 cell-home" id="left-2">
     <div></div>
   </div>
-  <div class="col-md-6 col-sm-12 cell-home" id="right-2">
-    <div></div>
+  <div class="col-md-6 col-sm-12 cell-home border" id="right-2">
+    <div>
+      <div class="d-flex justify-content-between">
+        <div id="demo">
+  <button v-on:click="toggleShow()">
+    Toggle
+  </button>
+  <transition name="fade">
+    <div v-if="show">
+        <div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card" style="width: 12rem; height: 16rem; padding:1.5rem;">
+          <img class="mx-auto d-block w-50  card-img-top" src="../assets/coin_blue.png" alt="Card image cap"  >
+          <div class="card-body ">
+            <h5 class="card-title">You send</h5>
+            <p class="card-text">1000 HUF</p>
+          </div>
+          <div>
+            <a href="#" class="btn btn-primary">More..</a>
+          </div>
+      </div>
+
+    </div>
+    <div class="col-sm">
+      <div class="card" style="width: 12rem; height: 16rem;padding:1.5rem;">
+        
+        <div id="countup">
+            {{ intCount }}$
+      
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">You save</h5>
+          <p class="card-text"> </p>
+        </div>
+        <div>
+          <a href="#" class="btn btn-primary">More..</a>
+        </div>
+      </div>
+   </div>
+   <div class="col-sm">
+      <div class="card" style="width: 12rem; height: 16rem;padding:1.5rem;">
+
+          <img class="mx-auto d-block w-50 card-img-top" src="../assets/footprint_blue.png" alt="Card image cap">
+           
+          <div class="card-body">
+            <h5 class="card-title">In 2 days</h5>
+            <p class="card-text"> </p>
+          </div>
+          <div>
+            <a href="#" class="btn btn-primary">More..</a>
+          </div>
+      </div>
+
+    </div>
+    <div class="col-sm">
+      <div class="card" style="width: 12rem; height: 16rem;padding-top:1.5rem; padding-bottom:1.5rem;">
+        <img class="mx-auto d-block w-50 card-img-top malac" src="../assets/moneysave_blue.png" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Recipient gets</h5>
+          <p class="card-text">100 USD</p>
+        </div>
+        <div>
+          <a href="#" class="btn btn-primary">More..</a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+ 
+</div>
+
+
+      
+      </div>
+  </transition>
+
+ 
+</div>
+      </div>
+      <div style="position: relative;">
+        <img src="../assets/utvonal.gif" style="max-width: 100%; max-height: 100%;">
+        <div style="position: absolute; top :50%; left: 50%; width: 10px; height: 10px; background: green;"></div>
+      </div>
+    </div>
   </div>
 </div>
 
