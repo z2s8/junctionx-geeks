@@ -12,35 +12,71 @@ class KafkaMessageGenerator {
             {
                 currencyFrom: "EUR",
                 currencyTo: "GBP",
-                exchangeRate: 0.88090
+                exchangeRate: 0.88090,
+                cities: [
+                    "Berlin", "Brussels", "Paris", "London"
+                ],
+                intervals: [
+                    12, 8, 24
+                ]
             },
             {
                 currencyFrom: "GBP",
                 currencyTo: "EUR",
-                exchangeRate: 1.13520
+                exchangeRate: 1.13520,
+                cities: [
+                    "London", "Paris", "Brussels", "Berlin"
+                ],
+                intervals: [
+                    24, 8, 12
+                ]
             },
             {
                 currencyFrom: "GBP",
                 currencyTo: "USD",
-                exchangeRate: 1.30715
+                exchangeRate: 1.30715,
+                cities: [
+                    "London", "Washington, D.C.", "New York"
+                ],
+                intervals: [
+                    48, 10
+                ]
             },
             {
                 currencyFrom: "USD",
                 currencyTo: "GBP",
-                exchangeRate: 0.76502
+                exchangeRate: 0.76502,
+                cities: [
+                    "New York", "Washington, D.C.", "London"
+                ],
+                intervals: [
+                    10, 48
+                ]
             },
             {
                 currencyFrom: "USD",
                 currencyTo: "EUR",
-                exchangeRate: 0.86850
+                exchangeRate: 0.86850,
+                cities: [
+                    "New York", "London", "Amsterdam", "Zurich"
+                ],
+                intervals: [
+                    48, 4, 16
+                ]
 
             },
             {
                 currencyFrom: "EUR",
                 currencyTo: "USD",
-                exchangeRate: 1.15100
+                exchangeRate: 1.15100,
+                cities: [
+                    "Zurich", "Amsterdam", "London", "New York"
+                ],
+                intervals: [
+                    16, 4, 48
+                ]
             }
-        ]
+        ];
 
         simpleTransfers.forEach(tf => {
             setTimeout(() => {
