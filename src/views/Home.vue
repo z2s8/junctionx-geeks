@@ -57,16 +57,7 @@
     
       </div>
        <div class="row">
- <div class="col-12" style="position: relative;">
-        <a class="ok btn" style="position: absolute; top: 50px;" href="submit">
-          <span data-text="S">S</span>
-          <span data-text="U">U</span>
-          <span data-text="B">B</span>
-          <span data-text="M">M</span>
-          <span data-text="I">I</span>
-          <span data-text="T">T</span>
-        </a>
-      </div>
+
     </div>
       
     </form>
