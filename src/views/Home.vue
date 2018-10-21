@@ -1,11 +1,53 @@
 <template>
    <div>
+     <div>
+        <nav class="navbar navbar-light bg-light" style="height: 10vh;">
+          <a class="navbar-brand" href="#">
+            <img src="../assets/Transferwise_logo.png" height="50" class="d-inline-block align-top" alt="">
+          </a>
+        </nav>  
+     </div>
       <div class="row">
-         <div class="col-md-6 col-sm-12 cell-home" id="left-1">
-            <div></div>
+         <div class="col-md-6 col-sm-12 cell-home p-0" id="left-1">
+            <div>
+              <div class="row first"> 
+                In this month around the world     
+                <img src="../assets/worldwide.png" style="height: 30pt; padding-left: 10px; padding-bottom: 5px;" alt="icon">
+              </div>
+        <div class= "elso animated zoomIn">
+         <div class="row second"> 
+                <div id="countup">
+                  {{ intCount }}
+                </div>
+        </div>
+        <div class="row third"> 
+          transactions
+        </div>
+        </div>
+        <div class= "masodik animated zoomIn delay-1s">
+        <div class="row fourth"> 
+          <div id="countup2">
+           {{ intCount2 }}
+          </div>
+        </div>
+        <div class="row fifth"> 
+          satisfied customer
+        </div>
+        </div>
+        <div class="harmadik animated zoomIn delay-2s">
+        <div class="row sixth"> 
+          <div id="countup3">
+           {{ intCount3 }}$
+          </div>
+        </div>
+        <div class="row seventh"> 
+          saved money 
+        </div>
          </div>
-         <div class="col-md-6 col-sm-12 cell-home" id="right-1">
-            <div class="d-flex justify-content-center formok">
+            </div>
+         </div>
+         <div class="col-md-6 col-sm-12 cell-home p-0" id="right-1">
+            <div class="d-flex justify-content-center align-items-center formok">
                <form class="form">
                   <div class="row">
                      <div class="col-md-6">
@@ -46,7 +88,8 @@
                         </div>
                      </div>
                   </div>
-                  <div class="row">
+                  <div class="row pt-5">
+                    <img id="arrowImage" class="tovabb animated" v-on:click="scrollDown" src="../assets/nyil.png" alt="nyil">
                   </div>
                </form>
             </div>
@@ -64,54 +107,46 @@
   
 
 
+
             </div>
          </div>
          <div class="col-md-6 col-sm-12 cell-home border" id="right-2">
-                     <transition name="fade">
-                              <div class="row d-flex justify-content-between align-items-center" style="height: 40vh;">
-                                 <div class="col-sm">
-                                    <div>
-                                       <img style="max-width: 50px;" src="../assets/coin_blue.png" alt="Card image cap"  >
-                                       <div>
-                                          <h5>You send</h5>
-                                          <p>1000 HUF</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-sm">
-                                    <div style="">
-                                       <div id="countup">
-                                          {{ intCount }}$
-                                       </div>
-                                       <div>
-                                          <h5>You save</h5>
-                                          <p> asdasdas</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-sm">
-                                    <div style="">
-                                       <img style="max-width: 50px;" src="../assets/footprint_blue.png" alt="Card image cap">
-                                       <div>
-                                          <h5>In 2 days</h5>
-                                          <p> </p>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-sm">
-                                    <div style="">
-                                       <img style="max-width: 50px;" src="../assets/moneysave_blue.png" alt="Card image cap">
-                                       <div>
-                                          <h5>Recipient gets</h5>
-                                          <p>100 USD</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                     </transition>
+
+           <table class="table">
+            <tbody>
+              <tr>
+                <td>
+                  <img class="proba" style="max-height: 70px; z-index: 1" src="../assets/coin_blue.png" alt="Card image cap"  >                  
+                </td>
+                <td>
+                  <span class="proba" style="color: #00B9FF; font-size: 22pt;">1000$</span>
+                </td>
+                <td>
+                  <img class="proba" style="max-width: 70px;" src="../assets/footprint_blue.png" alt="Card image cap">
+                </td>
+                <td>
+                  <img class="proba" style="max-width: 70px;" src="../assets/moneysave_blue.png" alt="Card image cap">
+                </td>
+              </tr>
+
+              <tr>
+                <td style="padding-bottom: 0;"><h5>You send</h5></td>
+                <td style="padding-bottom: 0;"><h5>You save</h5></td>
+                <td style="padding-bottom: 0;"><h5>In 2 days</h5></td>
+                <td style="padding-bottom: 0;"><h5>Recipient gets</h5></td>
+              </tr>
+
+              <tr>
+                <td style="padding: 0;"><p>1000 HUF</p></td>
+                <td></td>
+                <td></td>
+                <td style="padding: 0;"><p>100 USD</p></td>
+              </tr>
+            </tbody>
+          </table>
                      <transition name="fade">
                         <div style="position: relative;" >
-                          <img id="gif" src="../assets/utvonal.gif" style="max-width: 100%; max-height: 100%;">
+                          <img id="gif" src="../assets/utvonal.gif" style="max-width: 70%; max-height: 100%;">
 
                           <transition name="city1">
                             <div>
@@ -126,8 +161,6 @@
                               <div style="position: absolute; top :81%; left: 56%; width: 20px; height: 20px; background: green;"></div>
                             </div>
                           </transition>
-                         
-                          
                         </div>
                      </transition>
                
@@ -135,6 +168,7 @@
       </div>
    </div>
 </template>
+
 <style scoped>
 
 .canvas-container {
@@ -147,10 +181,132 @@
 
 }
 .cell-home {
-  height: 100vh;
+  height: 100vh;}
+  
+.proba:hover {
+  opacity: 0.5;
 }
+table{
+  font-family: 'Abel', sans-serif;
+  margin-top: 20px;
+}
+table tr td{
+  border: none;
+  text-align: center;
+  vertical-align: middle;
+}
+.row{
+  margin:0 !important;
+  
+}
+
+#countup::selection{
+  background-color: rgba(255, 215, 0, .75)
+ }
+
+/* #countup {
+  min-height: 71px;
+  
+  display: block;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 1.8px;
+  color: #00B9FF;
+  
+} */
+.card-img-top{
+  
+  justify-content: center;
+  align-items: center;
+  display:block;
+  
+}
+.malac{
+  height:71px;
+
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+#left-1{ 
+/* border: 1px solid black; */
+height: 90vh;
+/* background-color: #1B2C4B;    */
+background-image: url('../assets/hatter2.jpg') ; 
+background-size: cover;   
+}
+.first{
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  display:block;
+  padding-top: 4vh;
+  font-size: 22pt;
+  font-family: 'Abel', sans-serif;
+  margin: 0;
+}
+
+
+.second ,.fourth, .sixth{
+  padding-top: 8vh;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  display:block;
+  font-size: 35pt;
+  font-family: 'Abel', sans-serif;
+  color: #00B9FF;
+  margin: 0;
+}
+
+.third ,.fifth, .seventh{
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  display:block;
+  font-size: 19pt;
+  font-family: 'Abel', sans-serif;
+  margin: 0;
+}
+.amount{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding-top: 20vh;
+}
+ .kep{
+   width: 50px;
+ }
+ .kep{
+   width: 50px;
+ }
+#right-1{
+  background-color: #1B2C4B;
+  font-family: 'Abel', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  
+  /* padding-top: 20vh; */
+}
+
+/* .cell-home {
+  height: 100vh;
+} */
 .elkuldgomb {
   display: block;
+}
+.labelcolor{
+  color:#00B9FF;
+  font-size: 16pt;
 }
 .formok {
   max-width: 1200px;
@@ -161,12 +317,25 @@
 .form-control {
   color: #000;
 }
+.tovabb{
+  justify-content: space-around !important;
+  display: flex;
+  justify-content: bottom;
+  align-items: center;
+  align-content: bottom;
+  margin:auto;
+  /* margin-left: auto;
+  margin-right: auto; */
+  
+  height: 50px;
+}
 .format {
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
   border: 2px solid #e9ecee;
+  background-color: #fff;
   color: #000;
 }
 .valuta {
@@ -234,7 +403,7 @@
 #countup::selection {
   background-color: rgba(255, 215, 0, 0.75);
 }
-#countup {
+/* #countup {
   min-height: 71px;
 
   display: block;
@@ -245,7 +414,7 @@
   font-size: 2rem;
   letter-spacing: 1.8px;
   color: #00b9ff;
-}
+} */
 .card-img-top {
   justify-content: center;
   align-items: center;
@@ -293,6 +462,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
+import anime from 'animejs';
 // import Waypoint from "waypoints/lib/noframework.waypoints.min.js"
 import Chart from "chart.js";
 import axios from "axios";
@@ -366,6 +536,9 @@ export default {
           days: Math.random() * 4 + 1
         }
       ],    
+      count:0,
+      count2:0,
+      count3:0,
       selectedFrom: {
         name: "Euro",
         currency: "EUR",
@@ -393,14 +566,19 @@ export default {
           image: "gbr.png"
         }
       ],
-      intCount: 0,
-      show: true,
-      showc1: true,
-      showc2: true
+      // intCount: 0,
+      // show: true,
+      // showc1: true,
+      // showc2: true
     };
   },
   mounted: function() {
-      this.getEstimate()
+          this.loadChart();
+    this.getEstimate();
+    this.updateCharts();
+    this.countUp(),
+    this.countUp2(),
+    this.countUp3()
     },
     watch: {
       selectedFrom: {handler: function(newOne, oldOne) {
@@ -417,6 +595,93 @@ export default {
       }}
     },
   methods: {
+    countUp() {
+      anime({
+        targets: this.$data,
+        count: 215643,
+        duration: 2000,
+        delay: 100,
+        easing: 'easeInCubic'
+      })
+    },
+
+    countUp2() {
+      anime({
+        targets: this.$data,
+        count2: 54000,
+        duration: 3000 ,
+        delay: 200,
+        easing: 'easeInCubic'
+      })
+    },
+
+    countUp3() {
+      anime({
+        targets: this.$data,
+        count3: 1765,
+        duration: 4500,
+        delay: 100,
+        easing: 'easeInCubic'
+      })
+    },
+
+    selectFromCurrency: function(option) {
+      if (this.selectedTo.currency == option.currency) {
+        this.selectedTo = this.selectedFrom;
+      }
+
+      this.selectedFrom = option;
+    },
+
+    selectToCurrency: function(option) {
+      if (this.selectedFrom.currency == option.currency) {
+        this.selectedFrom = this.selectedTo;
+      }
+
+      this.selectedTo = option;
+    },
+
+    getEstimate: function() {
+      let that = this;
+      axios
+      .post('http://localhost:9090/estimate', {currencyFrom: this.selectedFrom.currency, currencyTo: this.selectedTo.currency})
+      .then(function(data) {
+        if (true) {
+          console.log('hey', data.data);
+          that.estimate = data.data;
+          that.calcEstimate();
+          that.updateCharts();
+        }
+      })
+    },
+
+    calcEstimate: function() {
+      this.amountTo = (this.amountFrom - this.amountFrom * this.estimate.feePercent)* this.estimate.exchangeRate;
+      return this.amountTo;
+    },
+
+    startGif: function() {
+      this.show = !this.show;
+
+      if(this.show)
+        document.getElementById("gif").src = require("@/assets/utvonal.gif");
+  },
+
+
+  
+  // mounted() {
+  //   this.loadChart();
+  //   this.getEstimate();
+  //   this.updateCharts();
+  //   this.countUp(),
+  //   this.countUp2(),
+  //   this.countUp3()
+  // },
+  
+    scrollDown: function (){
+      var elmnt = document.getElementById("right-2");
+      elmnt.scrollIntoView({ behavior: 'smooth' });
+    },
       addValues() {
       this.ListOfTran.forEach(element => {
         if (element.currencyFrom == "HUF" && element.currencyTo == "EUR") {
@@ -469,8 +734,7 @@ export default {
       let delivered = (beginAmount - fee) * exchangeRate;
       return delivered;
     },
-
-    loadChart() {
+loadChart() {
       var d = new Date();
       var n = d.getHours();
       let ctx = document.getElementById("Mychart");
@@ -504,13 +768,13 @@ export default {
         },
         options: {
           legend: {
-    	display: false,
+      display: false,
     },
-  	tooltips: {
-    	callbacks: {
-      	label: function(tooltipItem) {
+    tooltips: {
+      callbacks: {
+        label: function(tooltipItem) {
         console.log(tooltipItem)
-        	return tooltipItem.yLabel;
+          return tooltipItem.yLabel;
         }
       }
     },
@@ -531,7 +795,6 @@ export default {
                 }
               }
             ],
-
             xAxes: [
               {
                 barPercentage: 9,
@@ -540,7 +803,6 @@ export default {
                   drawOnChartArea: false,
                    
                    },
-
                    ticks: {
                     fontColor: "#1B2C4B",
                     fontFamily: "'Montserrat', 'sans-serif'",
@@ -553,60 +815,27 @@ export default {
           }
         }
       });
+    }
     },
 
-    selectFromCurrency: function(option) {
-      if (this.selectedTo.currency == option.currency) {
-        this.selectedTo = this.selectedFrom;
-      }
-
-      this.selectedFrom = option;
+  computed: {
+   intCount() {
+      return Math.trunc(this.count).toLocaleString()
     },
-
-    selectToCurrency: function(option) {
-      if (this.selectedFrom.currency == option.currency) {
-        this.selectedFrom = this.selectedTo;
-      }
-
-      this.selectedTo = option;
+    intCount2() {
+      return Math.trunc(this.count2).toLocaleString()
     },
-
-    getEstimate: function() {
-      let that = this;
-      axios
-      .post('http://localhost:9090/estimate', {currencyFrom: this.selectedFrom.currency, currencyTo: this.selectedTo.currency})
-      .then(function(data) {
-        if (true) {
-          console.log('hey', data.data);
-          that.estimate = data.data;
-          that.calcEstimate();
-          that.updateCharts();
-        }
-      })
-    },
-
-    calcEstimate: function() {
-      this.amountTo = (this.amountFrom - this.amountFrom * this.estimate.feePercent)* this.estimate.exchangeRate;
-      return this.amountTo;
-    },
-
-    startGif: function() {
-      this.show = !this.show;
-
-      if(this.show)
-        document.getElementById("gif").src = require("@/assets/utvonal.gif");
+    intCount3() {
+      return Math.trunc(this.count3).toLocaleString()
+    }
   },
 
-  },
+
+    }
+
+
+
 
   
-  mounted() {
-    this.loadChart();
-    this.getEstimate();
-    this.updateCharts();
-  },
-  
 
-  
-}
 </script>
