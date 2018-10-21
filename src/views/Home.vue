@@ -1,8 +1,12 @@
 <template>
-  <!-- Include the above in your HEAD tag -->
-  <div class="d-flex justify-content-center formok">
-
-    <form class="form">
+<div class="container">
+<div class="row">
+  <div class="col-md-6 col-sm-12 cell-home" id="left-1">
+    <div></div>
+  </div>
+  <div class="col-md-6 col-sm-12 cell-home" id="right-1">
+    <div class="d-flex justify-content-center formok">
+          <form class="form">
       <div class="row">
         <div class="col-md-6">
 <div class="form-group">
@@ -66,14 +70,24 @@
     </div>
       
     </form>
-   
-     
-    
-
+    </div>
   </div>
-  
+</div>
+<div class="row">
+  <div class="col-md-6 col-sm-12 cell-home" id="left-2">
+    <div></div>
+  </div>
+  <div class="col-md-6 col-sm-12 cell-home" id="right-2">
+    <div></div>
+  </div>
+</div>
+
+</div>
 </template>
 <style scoped>
+.cell-home {
+  height: 100vh;
+}
 .elkuldgomb {
   display: block;
 }
