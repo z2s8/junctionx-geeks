@@ -8,11 +8,13 @@
     "backend": "nodemon server/server.js"
   },
   "dependencies": {
+    "animejs": "^2.2.0",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.4",
     "kafka-node": "^3.0.1",
+    "mdbootstrap": "^4.5.12",
     "mongodb": "^3.1.8",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
